@@ -7,12 +7,12 @@ export default class Photo extends Component {
   render() {
     return (
       <div className="foto">
-        <PhotoHeader />
-        <PhotoInfo />
+        <PhotoHeader userLogin={this.props.data.loginUsuario} userPhoto={this.props.data.urlPerfil} hour={this.props.horario}/>
+        <PhotoInfo likers={this.props.data.likers} legend={this.props.data.comentario} comments={this.props.data.comentarios}/>
 
-        <img alt="foto" className="foto-src" src="https://instagram.fcgh10-1.fna.fbcdn.net/t51.2885-15/e35/14482111_1635089460122802_8984023070045896704_n.jpg?ig_cache_key=MTM1MzEzNjM4NzAxMjIwODUyMw%3D%3D.2"/>
+        <img alt="foto" className="foto-src" src={this.props.data.urlFoto}/>
 
-        <PhotoComments />
+        <PhotoComments data={this.props.data.comentarios} />
       </div>
     )
   }
