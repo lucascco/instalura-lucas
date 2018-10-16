@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Photo from './photo/Photo';
 import { API_URL } from './../config/endpoint';
+import Header from './Header';
 
 export default class Timeline extends Component {
   
@@ -17,11 +18,14 @@ export default class Timeline extends Component {
 
   render() {
     return (
-      <div className="fotos container">
-      {this.state.listPhotos.map(photo => 
-          <Photo data={photo} />
-        )}
-      </div>
+      <section>
+        <Header />
+        <div className="fotos container">
+          {this.state.listPhotos.map(photo => 
+            <Photo data={photo} />
+          )}
+        </div>
+      </section>
     )
   }
 }

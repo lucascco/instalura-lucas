@@ -7,8 +7,7 @@ class App extends Component {
     return (
       <div id="root">
         <div className="main">
-          <Header />
-          <Timeline />
+          {this.props.children}
         </div>
       </div>
 
