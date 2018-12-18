@@ -1,20 +1,28 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './css/reset.css';
 import './css/login.css';
 import './css/timeline.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import { Switch, Route, BrowserRouter, Redirect } from 'react-router-dom';
 import { Login } from './components/Login';
 import Timeline from './components/Timeline';
+
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route {...rest} render={props => (
+    localStorage.getItem('instalura-token')
+      ? <Component {...props} />
+      : <Redirect to='/login' />
+  )} />
+)
 
 ReactDOM.render(
   <BrowserRouter>
     <App>
       <Switch>
-        <Route path="/login" component={Login}/>
-        <Route path="/timeline" component={Timeline}/>
+        <PrivateRoute path="/timeline" component={Timeline}/>
+        <Route path="/" component={Login}/>
       </Switch>
     </App>
   </BrowserRouter>,

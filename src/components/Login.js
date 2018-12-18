@@ -15,9 +15,16 @@ export class Login extends Component {
     const dataFetch = await fetch(`${API_URL}/public/login`, requestOptions);
     if(dataFetch.ok) {
       const token = await dataFetch.text();
-      console.log('token', token);
+      localStorage.setItem('instalura-token', token);
+      this.props.history.push("/timeline");
     } else {
       this.setState({msg: 'Não foi possível realizar o login.'});
+    }
+  }
+
+  componentDidMount() {
+    if(localStorage.getItem('instalura-token')) {
+      this.props.history.push("/timeline");
     }
   }
 

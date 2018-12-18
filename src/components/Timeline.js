@@ -11,9 +11,9 @@ export default class Timeline extends Component {
   }
 
   componentDidMount() {
-    fetch(`${API_URL}/public/fotos/alots`)
+    fetch(`${API_URL}/fotos?X-AUTH-TOKEN=${localStorage.getItem('instalura-token')}`)
       .then(data => data.json())
-      .then(photos => this.setState({listPhotos: photos}));
+      .then(photos => this.setState({ listPhotos: photos }));
   }
 
   render() {
@@ -22,7 +22,7 @@ export default class Timeline extends Component {
         <Header />
         <div className="fotos container">
           {this.state.listPhotos.map(photo => 
-            <Photo data={photo} />
+            <Photo key={photo.id} data={photo} />
           )}
         </div>
       </section>

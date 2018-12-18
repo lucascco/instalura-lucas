@@ -6,7 +6,7 @@ export default class PhotoInfo extends Component {
       <div className="foto-info">
         <div className="foto-info-likes">
           {this.props.likers.map(liker => 
-            <a href="#"> {liker.loing} </a>,
+            <a key={liker.login} href="#"> {liker.loing} </a>,
           )}
 
           curtiram
@@ -20,7 +20,7 @@ export default class PhotoInfo extends Component {
 
         <ul className="foto-info-comentarios">
           {this.props.comments.map(comment => 
-            <li className="comentario">
+            <li key={comment.id} className="comentario">
               <a className="foto-info-autor">{comment.login} </a>
               {comment.texto}
             </li>
